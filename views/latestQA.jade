@@ -1,0 +1,119 @@
+doctype html
+html
+  head
+    title TRIVIA : Add QA
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    style.
+      h1 {
+      color: greenyellow
+      }
+      h3 {
+      color: mediumaquamarine
+      }
+      p { color: darkblue }
+      body {
+      background-image: url("../images/background.jpeg");
+      text-align: center
+      }
+  body
+    h1(align='center') TRIVIA MANIA
+    h3(align='center') Raise your mind
+    p
+      b Please enter the Question and Answer details in the form given below
+    script(type='text/javascript', src='http://code.jquery.com/jquery.min.js')
+    script(type='text/javascript').
+      function SaveMe()
+      {
+        var fileName = document.getElementById("fileAttach").value;
+        var fileIn   = document.getElementById("fileAttach").file[0];
+        alert("fileName"  +fileName+ "fileSize" +fileIn);
+      }
+    form(method="post")
+      p
+        b
+          | Question Text :
+          input#QText(type='text', name='QuestionText', value=' ')
+          br
+          |         Question Type :
+          select#QType(name='QuestionType')
+            option(value='Yes/No') Yes / No
+            option(value='Text' ) Text
+            option(value='Multiple Choice') Multiple Choice
+          br
+          |         Question MIME Type :
+          select#QMIMEType(name='QuestionMIMEType')
+            option(value='Text' ) Text
+            option(value='Image') Image
+            option(value='Audio') Audio
+            option(value='Video') Video
+          br
+          |         Question Category :
+          select#QCategory(name='QuestionCategory')
+            option(value='Science' ) Science
+            option(value='Sports') Sports
+            option(value='Wildlife') Wildlife
+            option(value='Business') Business
+            option(value='Politics') Politics
+            option(value='Movies') Movies
+            option(value='Social') Social
+            option(value='Travel') Travel
+            option(value='History') History
+          br
+          |         Question Classification :
+          input#QClassification(type='radio',
+name='QuestionClassification', onclick='check(this.value)',
+value='Weighted' checked)
+          | Weighted
+          input#QClassification(type='radio',
+name='QuestionClassification', onclick='check(this.value)',
+value='Unweighted')
+          | Unweighted
+          br
+          |         Question Scope :
+          input#QScope(type='radio', name='QuestionScope',
+onclick='check(this.value)', value='Privat' )
+          | Private
+          input#QScope(type='radio', name='QuestionScope',
+onclick='check(this.value)', value='Public' checked)
+          | Public
+          br
+          |         Question Activation Status :
+          input#QActStatus(type='radio',
+name='QuestionActivationStatus', onclick='check(this.value)',
+value='Active' checked)
+          | Active
+          input#QActStatus(type='radio',
+name='QuestionActivationStatus', onclick='check(this.value)',
+value='Inactive')
+          | Inactive
+          br
+          |         Option 1
+          input#chk1(type='text', name='QuestionOption1', value=' ')
+          br
+          |         Option 2
+          input#chk2(type='text', name='QuestionOption2', value='  ')
+          br
+          |         Option 3
+          input#chk3(type='text', name='QuestionOption3', value=' ')
+          br
+          |         Option 4
+          input#chk4(type='text', name='QuestionOption4', value=' ')
+          br
+          |         Answer Text :
+          input#AText(type='text', name='AnswerText', value=' ')
+          br
+          |         Answer Weightage :
+          input#AWeightage(type='number', name='AnswerWeightage', value=' ')
+          br
+          |         Multimedia Attachment :
+          input(type='file', id="fileAttach" name="fileAttach" value='Upload')
+          br
+          br
+          input(type='submit', id="addDB" value="Add" onclick="insertQDB()")
+     div(style='text-align: center')
+      a(href='listqa.html') List Questions and Answers
+      br
+      br
+      a(href='index.html') Home
+      br

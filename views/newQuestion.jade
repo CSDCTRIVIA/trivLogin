@@ -1,0 +1,35 @@
+
+extends layout
+
+block content
+  h1= title
+  div.newQuestion
+    form( method="post")
+      div
+        div
+          span.label Description :
+          input(type="text", name="description", id="DescriptionQuestion")
+        div
+          span.label Weightage :
+          input(type="text", name="weightage", id="WeightageQuestion")
+        div
+          span.label Category :
+          input(type="text", name="Category", id="CategoryQuestion")
+        div
+          span.label Type :
+          input(type='Option', name="Type", id="choice")
+        div
+          span.label Option1 :
+          input(type="text", name="Answer1", id="answer1Question")
+        div
+          span.label Option2 :
+          input(type="text", name="Answer2", id="answer2Question")
+        div
+          span.label Option3 :
+          input(type="text", name="Answer3", id="answer3Question")
+        div
+          span.label Option4 :
+          input(type="text", name="Answer4", id="answer4Question")
+        div#editEmployeeSubmit
+          input(type="submit", value="Add" onclick="insertQDB()")
+    a(href="/")!= "Back to Main Page"
