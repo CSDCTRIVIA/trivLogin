@@ -17,6 +17,7 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 var morgan       = require('morgan');
 var session      = require('express-session');
+var bcrypt = require('bcryptjs');
 var questprovider = new qProvider('localhost',27017);
 var getFiles = new fileProvider('localhost', 27017);
 var userProvider = new uProvider('localhost',27017);
@@ -47,20 +48,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 //require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // development error handler
 // will print stacktrace
@@ -99,12 +86,6 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/questions/new', function(req, res) {
-  res.render('latestQA', {
-    title: 'New Question'
-  });
-});
-
 app.get('/exitformalities', function(req, res) {
   res.render('exitformalities', {
     title: 'THANKS FOR STOPPING BY'
@@ -124,7 +105,9 @@ app.post('/loginPage', function(req,res,next){
     var rEmail = req.param('reg2Email');
     var rPh = req.param('reg2Ph');
     var rPwd = req.param('reg2Pwd');
-    console.log("WE" +rEmail + " " +rPh +" " +rPwd );
+    var salt = bcrypt.genSaltSync(10);
+    var hashPwd = bcrypt.hashSync(rPwd,salt);
+    console.log("WE" +rEmail + " " +rPh +" " +hashPwd );
     if(rPwd === 0 && rEmail ===0)
     {
         alert("Password cant be null");
@@ -135,22 +118,18 @@ app.post('/loginPage', function(req,res,next){
             userProvider.Save({
                 Email: req.param('reg2Email'),
                 Phone: req.param('reg2Ph'),
-                Password: req.param('reg2Pwd')
+                Password: hashPwd
             });
         
     }
     
-})
+});
 
-
-
-
-
-
-
-
-
-
+app.get('/questions/new', function(req, res) {
+  res.render('latestQA', {
+    title: 'New Question'
+  });
+});
 
 
 //save new employee
