@@ -3,20 +3,23 @@
     To change this template file, choose Tools | Templates
     and open the template in the editor.
      
-
-html
-    h1 LOGIN PAGE
-    body
+extends layout
+block content
+  
+  #LoginPage
+  h1 WELCOME TO LOGIN
+      div.question
     form(method="post")
       br
       |  Email:
-      input#AText(type='text' name="reg2Email"  value=' ')
+      input#AText(type='text' name="reg2Email"  value="")
       br
       |  Ph:
-      input#AText(type='number' name="reg2Ph" value=' ')
+      input#AText(type='number' name="reg2Ph" value="")
       br
       |  Password:
-      input#AText(type='text' name="reg2Pwd" value=' ')
+      input#AText(type='text' name="reg2Pwd" value="")
       br
       | 
-      input(type="submit" style='width:400px;height:20px' name="SIGNUP" value="SIGN UP"  onclick="latestQA")
+      input(type="submit" style='width:400px;height:20px' name="SIGNUP" value="SIGN UP"  onclick="location.href='/questions/new'")
+      input(type="submit" style='width:400px;height:20px' name="SIGNUP" value="SIGN IN"  onclick="location.href='/questions/new'")
