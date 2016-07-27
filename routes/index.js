@@ -21,4 +21,12 @@ router.get('/questions/new', function(req, res, next) {
   { title: 'Welcome to Trivia' });
 });
 
+router.post('/loginPage', function(req, res){
+  res.render('latestQA',
+  { title: 'Welcome to Trivia' });
+});
+
+
+
+
 module.exports = router;
